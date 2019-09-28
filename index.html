@@ -1,0 +1,143 @@
+<html>
+<head>
+  <title>Socket.IO chat</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="jumbotron" class="jumbotron text-center">
+    <h1>CHAT TA</h1>
+  </div>
+  <div class="container">
+
+    <div id="userFormArea" class="row">
+      <div class="col-md-12">
+        <form id="userForm">
+          <div class="form-group">
+            <label>What's your nickname:</label>
+            <div id="error-container"></div>
+            <input class="form-control" id="username">
+            <br>
+            <input id ="ok" type="submit" class="btn btn-primary" value="LET ME CHAT">
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row" id= "row"> 
+      <div class="col-md-4">
+          <h3>Online Users</h3>
+          <ul class="list-group" id="users"></ul>
+        </div>
+      <h1>Messages:</h1>
+      <div class="col-md-8" id="divmessages">
+        <ul id='MSG'></ul>
+      </div>
+      </div>
+    
+    </div>
+
+    <div class="chat-popup" id="chat">
+      <form id="messageForm" class="form-container">
+        <h1>Chat</h1>
+        <label for="msg"><b>Enter a Message</b></label>
+        <input type="text" class="form-control" id="message">
+        <p id="isTyping"></p>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Send Message">
+      </form>
+    </div>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io.connect();
+        var messageForm = $('#messageForm');
+        var message = $('#message');
+        var userFormArea = $('#userFormArea');
+        var userForm = $('#userFormArea');
+        var users = $('#users');
+        var username = $('#username');
+        var messages = $('#MSG');
+        var isTyping=$('#isTyping');
+        var stopTyping=$('#stopTyping');
+        var name;
+
+        
+        $(".well").hide();
+        $(messages).hide();
+        $("#row").hide();
+
+      //typing 
+        message.bind("keypress", () =>{
+          socket.emit('typing')
+     
+     })
+        socket.on('typing', (data) =>{
+          $(isTyping).text( data.username + " is typing...");
+     })
+    //  stops typing
+    socket.on('stopTyping', data => {
+      $("#isTyping").empty();
+    })
+
+
+        // send the message
+        messageForm.submit(function (e) {
+          e.preventDefault();
+          socket.emit('send message', message.val());
+          socket.emit('stopTyping', { name:name });
+          message.val('');
+          return false;
+        });
+        // for the left and right messsage
+        socket.on('new message', function (data) {
+          var Msg = data.user + ":" + data.msg;
+          if (data.user==name) {
+            messages.append("<div class='alert alert-success'><strong>" + Msg + "</div>")
+
+          } else {
+            messages.append("<div class='alert alert-danger'><strong>" + Msg + "</div>")
+
+          }
+        });
+        // submission of username
+        userForm.submit(function (e) {
+          name = username.val();
+          e.preventDefault();
+          socket.emit('new user', username.val(), function (data) {
+
+            if (data) {
+              userFormArea.hide();
+              $(".chat-popup").show();
+              $(".well").show();
+              $(messages).show();
+              $("#row").show();
+              $(jumbotron).css('height' , '30%');
+            }
+          });
+          username.val('');
+        });
+
+        
+     socket.on('join chat', function(broadcast){
+       messages.append('<p>'+broadcast+ '</p>');
+     })
+        // show the online users
+        socket.on('get users' , function(data){
+        var html = "";
+        for(i = 0; i < data.length; i++){
+          html += '<li class = "list-group-item">'+data[i]+'</li>';
+        }
+        users.html(html);
+     });
+    
+    });
+    
+   </script>
+ </body>
+</html>

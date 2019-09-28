@@ -1,0 +1,103 @@
+
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        background-color: black;
+  
+      }
+  
+      * {
+        box-sizing: border-box;
+      }
+  
+      .chat-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 2;
+      }
+  
+      .form-container {
+        max-width: 500px;
+        padding: 10px;
+        background-color: black;
+      }
+  
+  
+      .form-container .btn {
+        background-color: black;
+        color: white;
+  
+        border-color: black;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 0.8;
+      }
+  
+      .form-container .btn:hover,
+      .open-button:hover {
+        opacity: 1;
+      }
+  
+      #jumbotron {
+        background-color: black;
+        height: 30%;
+      }
+  
+      #username {
+        width: 100%;
+        padding: 15px 32px;
+        margin-bottom: 10px;
+      }
+  
+      #userForm {
+        margin-left: 40%;
+        margin-right: 40%;
+        margin-top: 10%;
+        text-align: center;
+        background-color: black;
+        color: white;
+      }
+      
+      #users{
+        color:black;
+      }
+   
+       #ok {
+        padding: 15px 32px;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 10px;
+        opacity: 0.8;
+        border-color: greenyellow;
+      } 
+  
+      .well{
+        color:greenyellow;
+        background-color: black;
+        width: 50%;
+      }
+      .alert-success{
+        color: black;
+        background-color: white;
+        border-color: greenyellow;
+        margin-left:50%;
+        width: 50%;
+      }
+      .alert-danger{
+        color: black;
+        background-color: white;
+        border-color: greenyellow;
+        margin-right: 30%;
+        width: 50%;
+      }
+      #isTyping{
+        color:yellow;
+      }
+  
+  

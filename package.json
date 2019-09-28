@@ -1,0 +1,30 @@
+{
+  "name": "socket",
+  "version": "1.0.0",
+  "description": "Socket.io_Heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "socket"
+  ],
+  "author": "Claire Feliza Banawan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Claire-pn/heruko-node-sample-claire.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Claire-pn/heruko-node-sample-claire/issues"
+  },
+  "homepage": "https://github.com/Claire-pn/heruko-node-sample-claire#readme",
+  "engines": {
+    "node": "10.16"
+  }
+}
