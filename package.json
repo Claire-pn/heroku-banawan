@@ -12,19 +12,19 @@
   "author": "Claire Feliza Banawan",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "socket.io": "^2.3.0"
+    "express": "^6.4.1",
+    "socket.io": "^2.2.0"
   },
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Claire-pn/heruko-node-sample-claire.git"
+    "url": "git+https://github.com/Claire-pn/heroku-banawan.git"
   },
   "bugs": {
-    "url": "https://github.com/Claire-pn/heruko-node-sample-claire/issues"
+    "url": "https://github.com/Claire-pn/heroku-banawan/issues"
   },
-  "homepage": "https://github.com/Claire-pn/heruko-node-sample-claire#readme",
+  "homepage": "https://github.com/Claire-pn/heroku-banawan#readme",
   "engines": {
-    "node": "10.16"
+    "node": "10.15"
   }
 }
