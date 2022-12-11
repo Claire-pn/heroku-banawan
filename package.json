@@ -13,7 +13,7 @@
   "author": "Claire Feliza Banawan",
   "license": "ISC",
   "dependencies": {
-    "express": "^6.4.1",
+    "express": "^4.17.3",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {},
